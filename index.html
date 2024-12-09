@@ -86,6 +86,7 @@
                     if (checkWin(r, col)) {
                         document.getElementById('message').textContent = `${currentPlayer.toUpperCase()} wins!`;
                         disableBoard();
+                        setTimeout(resetGame, 3000); // Automatically reset the game after 3 seconds
                     } else {
                         currentPlayer = currentPlayer === 'red' ? 'yellow' : 'red';
                     }
