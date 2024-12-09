@@ -20,6 +20,15 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            position: relative;
+        }
+        .disc {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: absolute;
+            top: -100%;
+            transition: top 0.5s ease;
         }
         .red {
             background-color: red;
@@ -68,7 +77,12 @@
                 if (!board[r][col]) {
                     board[r][col] = currentPlayer;
                     const cell = document.querySelector(`.cell[data-row='${r}'][data-col='${col}']`);
-                    cell.classList.add(currentPlayer);
+                    const disc = document.createElement('div');
+                    disc.classList.add('disc', currentPlayer);
+                    cell.appendChild(disc);
+                    setTimeout(() => {
+                        disc.style.top = '0';
+                    }, 10);
                     if (checkWin(r, col)) {
                         document.getElementById('message').textContent = `${currentPlayer.toUpperCase()} wins!`;
                         disableBoard();
